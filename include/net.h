@@ -239,7 +239,7 @@ struct ip_hdr {
 	ushort		ip_sum;		/* checksum			*/
 	IPaddr_t	ip_src;		/* Source IP address		*/
 	IPaddr_t	ip_dst;		/* Destination IP address	*/
-};
+} __attribute__((packed));
 
 #define IP_OFFS		0x1fff /* ip offset *= 8 */
 #define IP_FLAGS	0xe000 /* first 3 bits */
@@ -267,7 +267,7 @@ struct ip_udp_hdr {
 	ushort		udp_dst;	/* UDP destination port		*/
 	ushort		udp_len;	/* Length of UDP packet		*/
 	ushort		udp_xsum;	/* Checksum			*/
-};
+} __attribute__((packed));
 
 #define IP_UDP_HDR_SIZE		(sizeof(struct ip_udp_hdr))
 #define UDP_HDR_SIZE		(IP_UDP_HDR_SIZE - IP_HDR_SIZE)
@@ -306,7 +306,7 @@ struct arp_hdr {
 	uchar		ar_tha[];	/* Target hardware address	*/
 	uchar		ar_tpa[];	/* Target protocol address	*/
 #endif /* 0 */
-};
+} __attribute__((packed));
 
 #define ARP_HDR_SIZE	(8+20)		/* Size assuming ethernet	*/
 
@@ -341,7 +341,7 @@ struct icmp_hdr {
 		} frag;
 		uchar data[0];
 	} un;
-};
+} __attribute__((packed));
 
 #define ICMP_HDR_SIZE		(sizeof(struct icmp_hdr))
 #define IP_ICMP_HDR_SIZE	(IP_HDR_SIZE + ICMP_HDR_SIZE)
