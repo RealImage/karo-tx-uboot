@@ -368,7 +368,7 @@ static int port_uc_addr(struct mvgbe_registers *regs, u8 uc_nibble,
 /*
  * port_uc_addr_set - This function Set the port Unicast address.
  */
-static void port_uc_addr_set(struct mvgbe_registers *regs, u8 * p_addr)
+void port_uc_addr_set(struct mvgbe_registers *regs, u8 * p_addr)
 {
 	u32 mac_h;
 	u32 mac_l;
