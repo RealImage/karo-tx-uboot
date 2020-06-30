@@ -163,11 +163,20 @@ static void mv_phy_88e1118_init(char *name)
 	printf("88E1118 Initialized on %s\n", name);
 }
 
+extern void port_uc_addr_set(void *regs, u8 * p_addr);
+
 /* Configure and enable Switch and PHY */
 void reset_phy(void)
 {
 	/* configure and initialize PHY */
 	mv_phy_88e1118_init("egiga0");
 
+    u8 maddr[16];
+    if (eth_getenv_enetaddr("ethaddr", maddr)){
+        port_uc_addr_set((void *)KW_EGIGA0_BASE, maddr);
+    }
+    if (eth_getenv_enetaddr("eth1addr", maddr)){
+        port_uc_addr_set((void *)KW_EGIGA1_BASE, maddr);
+    }
 }
 #endif
